@@ -1,0 +1,49 @@
+{
+    "name": "sharedcomponents",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/sharedcomponents/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/sharedcomponents/**/*.{ts,tsx,js,jsx}"]
+            }
+        },
+        "build": {
+            "executor": "@nrwl/rollup:rollup",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/sharedcomponents",
+                "tsConfig": "libs/sharedcomponents/tsconfig.lib.json",
+                "project": "libs/sharedcomponents/package.json",
+                "entryFile": "libs/sharedcomponents/src/index.ts",
+                "external": ["@emotion/react/jsx-runtime"],
+                "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                    {
+                        "glob": "libs/sharedcomponents/README.md",
+                        "input": ".",
+                        "output": "."
+                    },
+                    {
+                        "input": "libs/sharedassets/src/svgs",
+                        "glob": "**/*",
+                        "output": "./assets/svgs"
+                    }
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/sharedcomponents/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    }
+}

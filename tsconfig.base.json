@@ -1,0 +1,32 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@vegaplatformui/apis": ["libs/apis/src/index.ts"],
+            "@vegaplatformui/aws-cdk/apprunnercustomdns": ["libs/aws-cdk/apprunnercustomdns/src/index.ts"],
+            "@vegaplatformui/models": ["libs/models/src/index.ts"],
+            "@vegaplatformui/sharedassets": ["libs/sharedassets/src/index.ts"],
+            "@vegaplatformui/sharedassets/fonts": ["libs/sharedassets/fonts/src/index.ts"],
+            "@vegaplatformui/sharedcomponents": ["libs/sharedcomponents/src/index.ts"],
+            "@vegaplatformui/styling": ["libs/styling/src/index.ts"],
+            "@vegaplatformui/utils": ["libs/utils/src/index.ts"]
+        },
+        "esModuleInterop": true,
+        "typeRoots": ["node_modules/@types", "types/types.d.ts"],
+        "types": ["node", "@types/jest"]
+    },
+    "exclude": ["node_modules", "tmp"]
+}

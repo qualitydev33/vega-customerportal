@@ -1,0 +1,46 @@
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+import { Route, useNavigate, Routes as RRoutes } from 'react-router-dom';
+import { LandingPage } from '../pages/landing-page';
+import { ProtectedRoute } from './protected-route';
+import { DashboardPage } from '../pages/dashboard-page';
+import { SpacesPage } from '../pages/spaces-page';
+import { ProfilePage } from '../pages/profile-page';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { authenticationState } from '../recoil/atom';
+import { useKeycloak } from '@react-keycloak-fork/web';
+import { RouteUrls } from './routeUrls';
+import { sessionTexts } from '@vegaplatformui/utils';
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IRoutesProps {}
+
+const Routes: React.FC<IRoutesProps> = (props) => {
+    const navigate = useNavigate();
+    const { keycloak } = useKeycloak();
+    const [authenticated, setAuthenticated] = useRecoilState(authenticationState);
+
+    //keycloak auth
+    useEffect(() => {
+        if (keycloak.authenticated) {
+            sessionStorage.setItem(sessionTexts.authenticated, JSON.stringify(keycloak.authenticated));
+            setAuthenticated(keycloak.authenticated);
+            const currentRoute = sessionStorage.getItem(sessionTexts.route) || RouteUrls.dashboard;
+            navigate(`/${currentRoute}`);
+        }
+    }, [keycloak.authenticated, navigate, setAuthenticated]);
+
+    return (
+        <RRoutes>
+            <Route path='/*' element={<LandingPage />} />
+            <Route path='landing/*' element={<LandingPage />} />
+            <Route element={<ProtectedRoute />}>
+                <Route path={RouteUrls.dashboard} element={<DashboardPage />} />
+                <Route path={RouteUrls.spaces} element={<SpacesPage />} />
+                <Route path={RouteUrls.profile} element={<ProfilePage />} />
+            </Route>
+        </RRoutes>
+    );
+};
+
+export { Routes };

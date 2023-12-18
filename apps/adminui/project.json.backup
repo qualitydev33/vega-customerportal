@@ -1,0 +1,93 @@
+{
+  "name": "adminui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/adminui/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/adminui",
+        "index": "apps/adminui/src/index.html",
+        "baseHref": "/",
+        "main": "apps/adminui/src/main.tsx",
+        "polyfills": "apps/adminui/src/polyfills.ts",
+        "tsConfig": "apps/adminui/tsconfig.app.json",
+        "assets": ["apps/adminui/src/favicon.ico", "apps/adminui/src/assets",
+        {
+          "input": "libs/sharedassets/images",
+          "glob": "**/*",
+          "output": "images"
+        },
+        {
+          "input": "libs/sharedassets/fonts",
+          "glob": "**/*",
+          "output": "fonts"
+        }
+      ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/adminui/src/environments/environment.ts",
+              "with": "apps/adminui/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "adminui:build",
+        "port": 3000,
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "adminui:build:development"
+        },
+        "production": {
+          "buildTarget": "adminui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/adminui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/adminui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

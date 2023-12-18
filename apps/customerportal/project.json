@@ -1,0 +1,105 @@
+{
+    "name": "customerportal",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/customerportal/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "compiler": "babel",
+                "outputPath": "dist/apps/customerportal",
+                "index": "apps/customerportal/src/assets/public/index.html",
+                "baseHref": "/",
+                "main": "apps/customerportal/src/main.tsx",
+                "polyfills": "apps/customerportal/src/polyfills.ts",
+                "tsConfig": "apps/customerportal/tsconfig.app.json",
+                "assets": ["apps/customerportal/src/assets/public/favicon.ico", "apps/customerportal/src/assets"],
+                "styles": [],
+                "scripts": [],
+                "webpackConfig": "custom-webpack.config.js"
+            },
+            "configurations": {
+                "development": {
+                    "extractLicenses": false,
+                    "optimization": false,
+                    "sourceMap": true,
+                    "vendorChunk": true
+                },
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/customerportal/src/environments/environment.ts",
+                            "with": "apps/customerportal/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/webpack:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "customerportal:build",
+                "hmr": true,
+                "port": 3000
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "customerportal:build:development"
+                },
+                "production": {
+                    "buildTarget": "customerportal:build:production",
+                    "hmr": false
+                }
+            }
+        },
+        "serveSSL": {
+            "executor": "@nrwl/webpack:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+                "https": true,
+                "host": "local.vegacloud.io",
+                "buildTarget": "customerportal:build",
+                "hmr": true,
+                "port": 3001,
+                "ssl": true,
+                "sslCert": "local.vegacloud.io.crt",
+                "sslKey": "local.vegacloud.io.key"
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "customerportal:build:development"
+                },
+                "production": {
+                    "buildTarget": "customerportal:build:production",
+                    "hmr": false
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/customerportal/**/*.{ts,tsx,js,jsx}"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/customerportal/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

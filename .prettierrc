@@ -1,0 +1,16 @@
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 150,
+  "tabWidth": 4,
+  "jsxSingleQuote": true,
+  "bracketSpacing": true,
+  "react/jsx-wrap-multilines": [
+    "error",
+    {
+      "declaration": false,
+      "assignment": false
+    }
+  ]
+}

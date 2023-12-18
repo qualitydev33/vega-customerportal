@@ -1,0 +1,11 @@
+export { ReactComponent as VegaLogo } from './Vega_logo.svg';
+export { ReactComponent as VegaLogoShort } from './Vega_logo_short.svg';
+export { ReactComponent as AwsLogo } from './aws-logo.svg';
+export { ReactComponent as AzureLogo } from './microsoft.svg';
+export { ReactComponent as GcpLogo } from './google-logo.svg';
+export { ReactComponent as VegaCow } from './Veganout-Whole.svg';
+export { ReactComponent as OneSmallStep } from './One_Small_Step_Grayscale.svg';
+export { ReactComponent as OneGiantLeap } from './One_Giant_Leap_Grayscale.svg';
+export { ReactComponent as LiftOff } from './Lift_Off_Grayscale.svg';
+export { ReactComponent as CloudHeroPurple } from './Cloud_Hero_Purple.svg';
+export { ReactComponent as CloudHeroTitle } from './Cloud_Hero_Title.svg';

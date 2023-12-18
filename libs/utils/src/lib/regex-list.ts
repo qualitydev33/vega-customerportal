@@ -1,0 +1,15 @@
+export const regexList = {
+    alphabetic: /^[A-Za-z]+$/,
+    alphabetic_with_white_space: /[A-Za-z\s]+$/,
+    alphanumeric: /^[0-9A-Za-z]+$/,
+    number: /^-?\d*\.?\d+$/,
+    integer: /^-?\d+$/,
+    url: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i,
+    email: /^\S+@\S+\.\S+$/,
+    phone: /^\d{10}$/,
+    street_address: /^(\d{1,}) [a-zA-Z0-9\s]/,
+    zip_code: /^\d{5}(?:-\d{4})?$/,
+    client_secret: /^(?:[A-Za-z0-9_-]{32,}|(^\*+$))$/,
+    saml_identifier: /^urn:oasis:names:tc:SAML:\d\.\d:nameid-format:(?:unspecified|emailAddress|X509SubjectName|WindowsDomainQualifiedName|kerberos|entity|persistent|transient)$/,
+    formatted_number_str: /^(\d{1,3}(,\d{3})*(\.\d+)?|\.\d+)$/,
+}

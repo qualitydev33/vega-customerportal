@@ -1,0 +1,45 @@
+{
+    "name": "sharedassets",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/sharedassets/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/sharedassets/**/*.{ts,tsx,js,jsx}"]
+            }
+        },
+        "build": {
+            "executor": "@nrwl/rollup:rollup",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/sharedassets",
+                "tsConfig": "libs/sharedassets/tsconfig.lib.json",
+                "project": "libs/sharedassets/package.json",
+                "entryFile": "libs/sharedassets/src/index.ts",
+                "external": ["@emotion/react/jsx-runtime"],
+                "rollupConfig": "libs/sharedassets/rollup.config.js",
+                "compiler": "babel",
+                "assets": [
+                    {
+                        "glob": "libs/sharedassets/README.md",
+                        "input": ".",
+                        "output": "."
+                    }
+                ],
+                "webpackConfig": "custom-webpack.config.js"
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/sharedassets/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    }
+}

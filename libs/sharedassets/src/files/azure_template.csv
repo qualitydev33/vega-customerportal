@@ -1,0 +1,2 @@
+subscriptionId,subscription,clientId,clientSecret,tenantId,vegacustomername,activeDirectoryEndpointUrl,resourceManagerEndpointUrl,activeDirectoryGraphResourceId,sqlManagementEndpointUrl,galleryEndpointUrl,managementEndpointUrl
+,,,,,,https://login.microsoftonline.com,https://management.azure.com/,https://graph.windows.net/,https://management.core.windows.net:8443/,https://gallery.azure.com/,https://management.core.windows.net/
